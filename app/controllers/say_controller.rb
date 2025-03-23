@@ -8,7 +8,19 @@ class SayController < ApplicationController
 
   def directories
     # @files = Dir.glob("**/*").reject { |path| path.start_with?("tmp/") || path == "tmp" }
-    @file_tree = build_tree(".")
+    if params[:path].present?
+      path = params[:path]
+      if Dir.exist?(path)
+        @file_tree = build_tree(path)
+        flash.clear if @file_tree.present?
+      else
+        flash[:error] = "The specified path does not exist: #{path}"
+        file_tree= {}
+      end
+    else
+      @file_tree = {}
+      flash[:error] =  nil
+    end
   end
 
   def build_tree(path)
