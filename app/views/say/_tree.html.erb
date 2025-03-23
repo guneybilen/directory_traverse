@@ -1,0 +1,11 @@
+<ol>
+    <%tree.each do |name, subtree| %>
+      <li>
+        <%= name %>
+        <% if subtree %>
+
+          <%= render partial: "tree", locals: { tree: subtree } %>
+        <% end %>
+      </li>
+    <% end %>
+</ol>

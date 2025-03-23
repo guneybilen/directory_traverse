@@ -1,5 +1,6 @@
-<ol>
-<% @files.each do |file| %>
-  <li>File name is <%= file %></li>
-<% end %>
-</ol>
+
+
+
+<h1>File Tree</h1>
+
+<%= render partial: "tree", locals: {tree: @file_tree} %>
